@@ -83,8 +83,8 @@
        https://codepen.io/bennettfeely/pen/vYLmYJz
        Original implementation below uses CSS gradients, without SVG or scripts. */
     .star-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .star-layer { position: absolute; inset: 0; opacity: .7; animation: star-glimmer 7s ease-in-out infinite alternate; }
-    .star-layer:nth-child(1) { animation-duration: 7s; animation-delay: -0s; background: radial-gradient(circle at 25.68% 9.76%, #fff 0 0.7px, transparent 1.7px),
+    .star-layer { position: absolute; inset: 0; opacity: .7; animation: star-glimmer 3s ease-in-out infinite alternate, star-drift 16s ease-in-out infinite alternate; will-change: opacity, transform; }
+    .star-layer:nth-child(1) { animation-duration: 2.5s, 18s; animation-delay: -0s, -2s; background: radial-gradient(circle at 25.68% 9.76%, #fff 0 0.7px, transparent 1.7px),
       radial-gradient(circle at 33.42% 53.26%, #fff 0 1.3px, transparent 2.3px),
       radial-gradient(circle at 30.46% 21.87%, #fff 0 1px, transparent 2px),
       radial-gradient(circle at 34.30% 32.22%, #fff 0 0.7px, transparent 1.7px),
@@ -122,7 +122,7 @@
       radial-gradient(circle at 78.84% 51.44%, #fff 0 1px, transparent 2px),
       radial-gradient(circle at 72.15% 49.41%, #fff 0 1.3px, transparent 2.3px),
       radial-gradient(circle at 25.33% 76.32%, #fff 0 1.3px, transparent 2.3px); }
-    .star-layer:nth-child(2) { animation-duration: 9s; animation-delay: -3s; background: radial-gradient(circle at 67.98% 83.95%, #fff 0 1.3px, transparent 2.3px),
+    .star-layer:nth-child(2) { animation-duration: 3.5s, 22s; animation-delay: -1s, -4s; background: radial-gradient(circle at 67.98% 83.95%, #fff 0 1.3px, transparent 2.3px),
       radial-gradient(circle at 1.55% 27.48%, #fff 0 1px, transparent 2px),
       radial-gradient(circle at 53.35% 24.67%, #fff 0 1px, transparent 2px),
       radial-gradient(circle at 96.98% 13.85%, #fff 0 1.3px, transparent 2.3px),
@@ -160,7 +160,7 @@
       radial-gradient(circle at 55.25% 6.57%, #fff 0 1.3px, transparent 2.3px),
       radial-gradient(circle at 38.91% 80.71%, #fff 0 1px, transparent 2px),
       radial-gradient(circle at 31.16% 1.40%, #fff 0 0.7px, transparent 1.7px); }
-    .star-layer:nth-child(3) { animation-duration: 11s; animation-delay: -6s; background: radial-gradient(circle at 79.97% 50.45%, #fff 0 0.7px, transparent 1.7px),
+    .star-layer:nth-child(3) { animation-duration: 4.5s, 26s; animation-delay: -2s, -6s; background: radial-gradient(circle at 79.97% 50.45%, #fff 0 0.7px, transparent 1.7px),
       radial-gradient(circle at 69.20% 51.62%, #fff 0 1.3px, transparent 2.3px),
       radial-gradient(circle at 42.80% 11.84%, #fff 0 1px, transparent 2px),
       radial-gradient(circle at 31.09% 33.14%, #fff 0 1.3px, transparent 2.3px),
@@ -199,14 +199,20 @@
       radial-gradient(circle at 93.72% 77.81%, #fff 0 0.7px, transparent 1.7px),
       radial-gradient(circle at 89.29% 76.55%, #fff 0 1px, transparent 2px); }
     @keyframes star-glimmer {
-      0%, 15% { opacity: .25; }
-      70%, 100% { opacity: .85; }
+      0% { opacity: .15; }
+      100% { opacity: 1; }
+    }
+    @keyframes star-drift {
+      from { transform: translate(-6px, 0); }
+      to { transform: translate(6px, -12px); }
     }
     .motion-control { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; max-width: 100%; margin: 20px auto 0; padding: 8px 12px; border: 1px solid #526b82; border-radius: 8px; background: #061321; font-size: 1rem; cursor: pointer; }
     .motion-control input { width: 20px; height: 20px; margin: 0; flex-shrink: 0; accent-color: #b8d8ff; }
     .hero:has(.motion-control input:checked) .star-layer { animation-play-state: paused; }
+    .motion-status { margin: 8px 0 0; font-size: 1rem; }
     @media (prefers-reduced-motion: reduce) {
-      .star-layer { animation: none; opacity: .65; }
+      .star-layer { animation: none; opacity: .65; transform: none; }
+      .motion-status::after { content: "端末の「動きを減らす」設定により、星空は静止しています。"; }
     }
   </style>
 </head>
@@ -230,6 +236,7 @@
         </dl>
         <p class="lead">波音に耳を澄ませて、秋の夜空をゆっくり見上げるひととき。</p>
         <label class="motion-control"><input type="checkbox">星のアニメーションを一時停止</label>
+        <p class="motion-status" role="status"></p>
       </div>
     </section>
     <section class="details" aria-label="イベントのご案内">
