@@ -1,0 +1,13 @@
+name: automerge
+on: pull_request
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh pr merge --merge "$URL"
+        env:
+          URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
