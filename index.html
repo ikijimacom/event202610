@@ -51,6 +51,46 @@
       text-align: center;
     }
 
+    /* 光の雲と細かな星を重ねた、空を斜めに横切る天の川。 */
+    .milky-way {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .milky-way::before,
+    .milky-way::after {
+      content: "";
+      position: absolute;
+      top: 46%;
+      left: 50%;
+      width: max(140vw, 1100px);
+      height: clamp(160px, 24vw, 320px);
+      transform: translate(-50%, -50%) rotate(-28deg);
+      border-radius: 50%;
+    }
+
+    .milky-way::before {
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(126, 152, 209, .3), transparent 55%),
+        radial-gradient(ellipse at 65% 48%, rgba(220, 207, 240, .28), transparent 48%),
+        radial-gradient(ellipse at 48% 55%, rgba(166, 203, 227, .24), transparent 65%);
+      filter: blur(18px);
+    }
+
+    .milky-way::after {
+      background-image:
+        radial-gradient(circle, rgba(255, 249, 233, .85) 0 .8px, transparent 1.4px),
+        radial-gradient(circle, rgba(204, 223, 255, .7) 0 .6px, transparent 1.2px),
+        radial-gradient(circle, rgba(255, 255, 255, .55) 0 .5px, transparent 1px);
+      background-size: 43px 37px, 29px 53px, 61px 31px;
+      background-position: 0 0, 13px 19px, 31px 7px;
+      mask-image: radial-gradient(ellipse, #000 5%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse, #000 5%, transparent 70%);
+      opacity: .8;
+    }
+
     .moon {
       position: absolute;
       top: 64px;
@@ -307,6 +347,7 @@
 <body>
   <main class="page">
     <section class="hero" aria-labelledby="event-title">
+      <div class="milky-way" aria-hidden="true"></div>
       <div class="moon" aria-hidden="true"></div>
       <div class="shooting-star" aria-hidden="true"></div>
       <div class="hero-content">
