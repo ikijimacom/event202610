@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="壱岐島の海辺で開催する架空のイベント「秋の星空観察会」のご案内です。">
+  <title>秋の星空観察会｜壱岐島の海辺</title>
+  <style>
+    :root {
+      --night: #071525;
+      --deep-blue: #0b2840;
+      --cream: #fff9e9;
+      --gold: #f1c875;
+      --pale-blue: #c6deea;
+      --ink: #173348;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--cream);
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+      background: var(--night);
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(241, 200, 117, .95) 0 1px, transparent 2px),
+        radial-gradient(circle at 28% 7%, rgba(255, 255, 255, .8) 0 1px, transparent 2px),
+        radial-gradient(circle at 47% 20%, rgba(198, 222, 234, .85) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 68% 9%, rgba(255, 255, 255, .9) 0 1px, transparent 2px),
+        radial-gradient(circle at 85% 23%, rgba(241, 200, 117, .9) 0 1px, transparent 2px),
+        linear-gradient(180deg, #061321 0%, #0a263d 57%, #103a52 77%, #e8c998 77.2%, #f7ecd1 100%);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 77vh;
+      padding: 88px 24px 110px;
+      text-align: center;
+    }
+
+    .moon {
+      position: absolute;
+      top: 64px;
+      right: max(8vw, 28px);
+      width: clamp(64px, 8vw, 112px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--cream);
+      box-shadow: 0 0 45px rgba(255, 249, 233, .3);
+    }
+
+    .moon::after {
+      content: "";
+      position: absolute;
+      top: -7%;
+      left: -18%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #071827;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(760px, 100%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 24px;
+      color: var(--gold);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 9vw, 6.4rem);
+      font-weight: 500;
+      line-height: 1.14;
+      letter-spacing: .08em;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, .3);
+    }
+
+    .lead {
+      margin: 30px auto 0;
+      color: var(--pale-blue);
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      line-height: 2;
+      letter-spacing: .12em;
+    }
+
+    .shooting-star {
+      position: absolute;
+      top: 28%;
+      left: 13%;
+      width: 85px;
+      height: 1px;
+      transform: rotate(-25deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .9));
+    }
+
+    .shooting-star::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 8px #fff;
+    }
+
+    .shoreline {
+      position: absolute;
+      right: -3%;
+      bottom: -1px;
+      left: -3%;
+      height: 115px;
+      border-radius: 50% 48% 0 0 / 35% 35% 0 0;
+      background: #0a1d27;
+      clip-path: polygon(0 58%, 8% 54%, 18% 65%, 29% 48%, 40% 60%, 51% 37%, 62% 56%, 72% 42%, 83% 58%, 92% 45%, 100% 52%, 100% 100%, 0 100%);
+    }
+
+    .details {
+      position: relative;
+      color: var(--ink);
+      padding: 42px 24px 84px;
+    }
+
+    .card {
+      position: relative;
+      width: min(960px, 100%);
+      margin: -82px auto 0;
+      padding: clamp(32px, 6vw, 64px);
+      border: 1px solid rgba(23, 51, 72, .16);
+      background: rgba(255, 252, 242, .96);
+      box-shadow: 0 20px 60px rgba(7, 21, 37, .2);
+    }
+
+    .card::before {
+      content: "✦";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      color: #bf8a37;
+      transform: translateX(-50%);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin: 18px 0 44px;
+    }
+
+    .detail-item {
+      min-height: 136px;
+      padding: 26px 30px;
+      border-bottom: 1px solid rgba(23, 51, 72, .18);
+    }
+
+    .detail-item:nth-child(odd) {
+      border-right: 1px solid rgba(23, 51, 72, .18);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 12px;
+      color: #9b6b28;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+    }
+
+    .value {
+      margin: 0;
+      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+      line-height: 1.7;
+      letter-spacing: .05em;
+    }
+
+    .date {
+      color: #0d4b63;
+      font-size: clamp(1.65rem, 3.6vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .date small {
+      font-size: .5em;
+      font-weight: 500;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      margin: 0 0 15px;
+      color: #506575;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: .78rem;
+      letter-spacing: .18em;
+    }
+
+    .contact a {
+      display: inline-block;
+      color: var(--cream);
+      padding: 15px 28px;
+      border: 1px solid #173f55;
+      background: #173f55;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: clamp(.84rem, 2vw, 1rem);
+      letter-spacing: .08em;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+
+    .contact a:hover,
+    .contact a:focus-visible {
+      color: #173f55;
+      background: transparent;
+      outline: none;
+    }
+
+    .note {
+      margin: 28px 0 0;
+      color: #6b7a83;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: .72rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        min-height: 72vh;
+        padding-top: 110px;
+      }
+
+      .moon {
+        top: 35px;
+      }
+
+      .shooting-star {
+        left: 6%;
+      }
+
+      .details {
+        padding-inline: 16px;
+      }
+
+      .card {
+        padding: 38px 22px 36px;
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-item {
+        min-height: auto;
+        padding: 22px 8px;
+      }
+
+      .detail-item:nth-child(odd) {
+        border-right: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="event-title">
+      <div class="moon" aria-hidden="true"></div>
+      <div class="shooting-star" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">IKI ISLAND · AUTUMN NIGHT</p>
+        <h1 id="event-title">秋の<br>星空観察会</h1>
+        <p class="lead">波音に耳を澄ませて、<br>秋の夜空をゆっくり見上げるひととき。</p>
+      </div>
+      <div class="shoreline" aria-hidden="true"></div>
+    </section>
+
+    <section class="details" aria-label="イベント詳細">
+      <div class="card">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="label">DATE &amp; TIME</span>
+            <p class="value date">11月15日<br><small>19:00 — 21:00</small></p>
+          </div>
+          <div class="detail-item">
+            <span class="label">PLACE</span>
+            <p class="value">壱岐島の海辺</p>
+          </div>
+          <div class="detail-item">
+            <span class="label">WHAT TO BRING</span>
+            <p class="value">あたたかい服装<br>レジャーシート</p>
+          </div>
+          <div class="detail-item">
+            <span class="label">MESSAGE</span>
+            <p class="value">星の下で、心ほどける<br>秋の夜を。</p>
+          </div>
+        </div>
+
+        <div class="contact">
+          <p>お問い合わせ</p>
+          <a href="mailto:info@iki-hoshizora.example">info@iki-hoshizora.example</a>
+        </div>
+        <p class="note">※ このページに掲載されているイベントおよび連絡先は架空のものです。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
